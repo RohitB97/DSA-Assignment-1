@@ -85,13 +85,4 @@ public class LinkedListStack<T> implements Stack<T> {
         return (this.list_head == null);
     }
 
-    public static void main(String[] args){
-        LinkedListStack<Integer> stack = new LinkedListStack<Integer>();
-        stack.push(45);
-        stack.push(35);
-        stack.push(25);
-        stack.push(15);
-        stack.push(65);
-        stack.push(75);
-    }
 }

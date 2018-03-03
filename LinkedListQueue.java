@@ -108,13 +108,4 @@ public class LinkedListQueue<T> implements Queue<T> {
         return (this.list_head == null);
     }
 
-    public static void main(String[] args){
-        LinkedListQueue<Integer> queue = new LinkedListQueue<Integer>();
-        queue.enqueue(45);
-        queue.enqueue(35);
-        queue.enqueue(25);
-        queue.enqueue(15);
-        queue.enqueue(65);
-        queue.enqueue(75);
-    }
 }

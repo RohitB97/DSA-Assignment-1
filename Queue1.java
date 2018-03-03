@@ -84,16 +84,5 @@ public class Queue1<T> implements Queue<T>{
 	public boolean isEmpty(){
 		return this.Stack1.isEmpty();
 	}
-
-	public static void main(String[] args){
-        Queue1<Integer> queue = new Queue1<Integer>();
-        queue.enqueue(45);
-        queue.enqueue(35);
-        queue.enqueue(25);
-        queue.enqueue(15);
-        queue.enqueue(65);
-        queue.enqueue(75);
-        System.out.println(queue.size());
-        System.out.println(queue.front());
-    }
+	
 }

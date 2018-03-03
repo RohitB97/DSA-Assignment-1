@@ -71,15 +71,5 @@ public class ArrayStack<T> implements Stack<T> {
         return this.S.remove(t + 1);      // Dereference S[top] and decrement top
     }
 
-    public static void main(String[] args){
-        ArrayStack<Integer> stack = new ArrayStack<Integer>();
-        stack.push(75);
-        stack.push(65);
-        stack.push(45);
-        stack.push(35);
-        stack.push(25);
-        stack.push(15);
-    }
-
 }
 

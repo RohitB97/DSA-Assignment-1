@@ -283,13 +283,4 @@ public class BSTree<Key extends Comparable<Key>, Value> {
 		return this.prettyPrintTreeWithRoot(this._root, "");
 	}
 
-	public static void main(String[] args){
-		BSTree<Integer,String> tree = new BSTree<Integer,String>();
-		tree.insert(5,"E");
-		tree.insert(3,"C");
-		tree.insert(1,"A");
-		tree.insert(2,"B");
-		tree.insert(4,"D");
-	}
-
 }

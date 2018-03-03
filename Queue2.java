@@ -75,16 +75,5 @@ public class Queue2<T> implements Queue<T>{
 	public boolean isEmpty(){
 		return (this.Stack1.isEmpty() && this.Stack2.isEmpty());
 	}
-
-	public static void main(String[] args){
-        Queue2<Integer> queue = new Queue2<Integer>();
-        queue.enqueue(45);
-        queue.enqueue(35);
-        queue.enqueue(25);
-        queue.enqueue(15);
-        queue.enqueue(65);
-        queue.enqueue(75);
-        System.out.println(queue.size());
-        System.out.println(queue.front());
-    }
+	
 }
