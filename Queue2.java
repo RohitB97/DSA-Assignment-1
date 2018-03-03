@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public interface Queue<T> {
+interface Queue<T> {
 	/**
 	* Returns the number of elements in the queue.
  	* return number of elements in the queue.
@@ -20,7 +20,7 @@ public interface Queue<T> {
 	* exception EmptyQueueException if the queue is empty.
 	*/
 	
-	public T front() throws EmptyQueueException;
+	public T front() throws NoSuchElementException;
 	/**
 	*Inserts an element at the rear of the queue.
 	* param element new element to be inserted.
@@ -33,19 +33,19 @@ public interface Queue<T> {
 	* exception EmptyQueueException if the queue is empty.
 	*/
 
-	public T dequeue() throws EmptyQueueException;
+	public T dequeue() throws NoSuchElementException;
 }
 
 public class Queue2<T> implements Queue<T>{
-	ArrayStack Stack1 = new ArrayStack();
-	ArrayStack Stack2 = new ArrayStack();
+	ArrayStack<T> Stack1 = new ArrayStack<T>();
+	ArrayStack<T> Stack2 = new ArrayStack<T>();
 
 	public void enqueue (T element){
 		this.Stack1.push(element);
 	}
 
-	public T dequeue() throws EmptyQueueException{
-		if (this.Stack1.isEmpty() && this.Stack2.isEmpty()) throw new EmptyQueueException("Queue is empty");
+	public T dequeue() throws NoSuchElementException{
+		if (this.Stack1.isEmpty() && this.Stack2.isEmpty()) throw new NoSuchElementException();
  		
  		if(this.Stack2.isEmpty()){
  			while(!this.Stack1.isEmpty()){
@@ -56,8 +56,8 @@ public class Queue2<T> implements Queue<T>{
 		return(this.Stack2.pop());
 	}
 
-	public T front() throws EmptyQueueException{
-		if (this.Stack1.isEmpty() && this.Stack2.isEmpty()) throw new EmptyQueueException("Queue is empty");
+	public T front() throws NoSuchElementException{
+		if (this.Stack1.isEmpty() && this.Stack2.isEmpty()) throw new NoSuchElementException();
 
 		if(this.Stack2.isEmpty()){
  			while(!this.Stack1.isEmpty()){
@@ -75,4 +75,16 @@ public class Queue2<T> implements Queue<T>{
 	public boolean isEmpty(){
 		return (this.Stack1.isEmpty() && this.Stack2.isEmpty());
 	}
+
+	public static void main(String[] args){
+        Queue2<Integer> queue = new Queue2<Integer>();
+        queue.enqueue(45);
+        queue.enqueue(35);
+        queue.enqueue(25);
+        queue.enqueue(15);
+        queue.enqueue(65);
+        queue.enqueue(75);
+        System.out.println(queue.size());
+        System.out.println(queue.front());
+    }
 }

@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public interface Stack<T> {
+interface Stack<T> {
     /**
     * Return the number of elements in the stack.
     */
@@ -60,7 +60,7 @@ public class LinkedListStack<T> implements Stack<T> {
         }
 
         else{
-            throw new EmptyStackException("Stack Underflow");
+            throw new EmptyStackException();
         }
     }
 
@@ -73,7 +73,7 @@ public class LinkedListStack<T> implements Stack<T> {
         }
 
         else{
-            throw new EmptyStackException("Stack Underflow");
+            throw new EmptyStackException();
         }
     }
 
@@ -83,5 +83,15 @@ public class LinkedListStack<T> implements Stack<T> {
 
     public boolean isEmpty(){
         return (this.list_head == null);
+    }
+
+    public static void main(String[] args){
+        LinkedListStack<Integer> stack = new LinkedListStack<Integer>();
+        stack.push(45);
+        stack.push(35);
+        stack.push(25);
+        stack.push(15);
+        stack.push(65);
+        stack.push(75);
     }
 }

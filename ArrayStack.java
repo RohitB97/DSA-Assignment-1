@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public interface Stack<T> {
+interface Stack<T> {
     /**
     * Return the number of elements in the stack.
     */
@@ -46,30 +46,39 @@ public class ArrayStack<T> implements Stack<T> {
     }
 
     public int size( ){
-        return (this.t + 1)  //Return the current stack size
+        return (this.t + 1);  //Return the current stack size
     }
 
     public boolean isEmpty( ){ //Return true iff the stack is empty
-        return (this.t < 0)
+        return (this.t < 0);
     }
 
     public void push(T obj){ //Push a new element on the stack
-        this.S[++this.t] = obj;
+        this.S.add(obj);
+        this.t++;
     }
 
     public T top() throws EmptyStackException {   // Return the top stack element
         if (isEmpty( ))
-            throw new EmptyStackException("Stack is empty");
-        return this.S[t]
+            throw new EmptyStackException();
+        return this.S.get(this.t);
     }
     
     public T pop() throws EmptyStackException {    // Pop off the stack element
-        T elem;
         if (isEmpty( ))
-            throw new EmptyStackException("Stack is Empty");
-        elem = this.S[this.t];
-        this.S[this.t--] = null;  // Dereference S[top] and decrement top
-        return elem
+            throw new EmptyStackException();
+        this.t--;
+        return this.S.remove(t + 1);      // Dereference S[top] and decrement top
+    }
+
+    public static void main(String[] args){
+        ArrayStack<Integer> stack = new ArrayStack<Integer>();
+        stack.push(75);
+        stack.push(65);
+        stack.push(45);
+        stack.push(35);
+        stack.push(25);
+        stack.push(15);
     }
 
 }

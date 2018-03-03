@@ -63,22 +63,26 @@ public class BSTree<Key extends Comparable<Key>, Value> {
 
 	// Insert Set
 
-	private void recursive_insert(Key newKey, Value newValue, TreeNode<Key,Value> node){
-		if(node == null)
+	private TreeNode<Key,Value> recursive_insert(Key newKey, Value newValue, TreeNode<Key,Value> node){
+		if(node == null){
 			node = new TreeNode<Key,Value>(newKey,newValue);
+			return node;
+		}
 
 		if(newKey.compareTo(node.key) > 0)
-			recursive_insert(newKey, newValue, node.right_node);
+			node.right_node = recursive_insert(newKey, newValue, node.right_node);
 
 		else if(newKey.compareTo(node.key) < 0)
-			recursive_insert(newKey, newValue, node.left_node);
+			node.left_node = recursive_insert(newKey, newValue, node.left_node);
 
 		else
 			node.value = newValue;
+
+		return node;
 	}
 
 	public void insert(Key newKey, Value newValue){
-		this.recursive_insert(newKey, newValue, this._root);
+		this._root = this.recursive_insert(newKey, newValue, this._root);
 	}
 
 	// ValueOf set
@@ -119,7 +123,7 @@ public class BSTree<Key extends Comparable<Key>, Value> {
 
 	private TreeNode<Key,Value> recursive_getMaxNode(TreeNode<Key,Value> node){
 		if(node.right_node != null)
-			return recursive_getMinNode(node.right_node);
+			return recursive_getMaxNode(node.right_node);
 		else
 			return node;
 	}
@@ -196,27 +200,17 @@ public class BSTree<Key extends Comparable<Key>, Value> {
 		if(node.right_node != null)
 			return fetch_predecessor(node.right_node);
 		
-		else{
-
-			TreeNode<Key,Value> temp_node = node;
-			
-			if(node.left_node == null)
-				node = null;
-
-			else
-				node = node.left_node;
-
-			return temp_node;
-		}
+		else
+			return node;
 	}
 
-	private void recursive_delete(Key searchKey, TreeNode<Key,Value> node){
+	private TreeNode<Key,Value> recursive_delete(Key searchKey, TreeNode<Key,Value> node){
 
 		if(searchKey.compareTo(node.key) > 0)
-			recursive_delete(searchKey, node.right_node);
+			node.right_node = recursive_delete(searchKey, node.right_node);
 
 		else if(searchKey.compareTo(node.key) < 0)
-			recursive_delete(searchKey, node.left_node);
+			node.left_node = recursive_delete(searchKey, node.left_node);
 
 		else{
 
@@ -231,14 +225,17 @@ public class BSTree<Key extends Comparable<Key>, Value> {
 
 			else{
 				TreeNode<Key,Value> temp_node = this.fetch_predecessor(node.left_node);
+				node = this.recursive_delete(temp_node.key,node);
 				node.key = temp_node.key;
 				node.value = temp_node.value;
 			}
 		}
+
+		return node;
 	}
 
 	public void delete(Key searchKey){
-		this.recursive_delete(searchKey, this._root);
+		this._root = this.recursive_delete(searchKey, this._root);
 	}
 
 	// RangeToString Set
@@ -287,7 +284,12 @@ public class BSTree<Key extends Comparable<Key>, Value> {
 	}
 
 	public static void main(String[] args){
-		System.out.println("Hello");
+		BSTree<Integer,String> tree = new BSTree<Integer,String>();
+		tree.insert(5,"E");
+		tree.insert(3,"C");
+		tree.insert(1,"A");
+		tree.insert(2,"B");
+		tree.insert(4,"D");
 	}
 
 }

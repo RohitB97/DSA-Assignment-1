@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public interface Queue<T> {
+interface Queue<T> {
     /**
     * Returns the number of elements in the queue.
     * return number of elements in the queue.
@@ -20,7 +20,7 @@ public interface Queue<T> {
     * exception EmptyQueueException if the queue is empty.
     */
     
-    public T front() throws EmptyQueueException;
+    public T front() throws NoSuchElementException;
     /**
     *Inserts an element at the rear of the queue.
     * param element new element to be inserted.
@@ -33,7 +33,7 @@ public interface Queue<T> {
     * exception EmptyQueueException if the queue is empty.
     */
 
-    public T dequeue() throws EmptyQueueException;
+    public T dequeue() throws NoSuchElementException;
 }
 
 class Node<T> {
@@ -71,17 +71,17 @@ public class LinkedListQueue<T> implements Queue<T> {
         this.size++;
     }
 
-    public T front() throws EmptyQueueException{
+    public T front() throws NoSuchElementException{
         if(this.list_head != null){
             return (this.list_head.data);
         }
 
         else{
-            throw new EmptyQueueException("Queue is empty");
+            throw new NoSuchElementException();
         }
     }
 
-    public T dequeue() throws EmptyQueueException{
+    public T dequeue() throws NoSuchElementException{
         if(this.list_head != null){
             T pop = this.list_head.data;
             
@@ -96,7 +96,7 @@ public class LinkedListQueue<T> implements Queue<T> {
         }
 
         else{
-            throw new EmptyQueueException("Queue is empty");
+            throw new NoSuchElementException();
         }
     }
 
@@ -106,5 +106,15 @@ public class LinkedListQueue<T> implements Queue<T> {
 
     public boolean isEmpty(){
         return (this.list_head == null);
+    }
+
+    public static void main(String[] args){
+        LinkedListQueue<Integer> queue = new LinkedListQueue<Integer>();
+        queue.enqueue(45);
+        queue.enqueue(35);
+        queue.enqueue(25);
+        queue.enqueue(15);
+        queue.enqueue(65);
+        queue.enqueue(75);
     }
 }
