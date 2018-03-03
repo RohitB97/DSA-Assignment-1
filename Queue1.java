@@ -45,7 +45,7 @@ public class Queue1<T> implements Queue<T>{
 	}
 
 	public T dequeue() throws NoSuchElementException{
-		if (this.Stack1.isEmpty()) throw new EmptyQueueException();
+		if (this.Stack1.isEmpty()) throw new NoSuchElementException();
  		
  		while(!this.Stack1.isEmpty()){
 			this.Stack2.push(this.Stack1.pop());
