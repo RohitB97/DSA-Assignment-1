@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Queue1<T> implements Queue<T>{
+public class myQueue1<T> implements Queue<T>{
 	ArrayStack<T> Stack1 = new ArrayStack<T>();
 	ArrayStack<T> Stack2 = new ArrayStack<T>();
 

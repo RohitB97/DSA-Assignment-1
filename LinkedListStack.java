@@ -1,16 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-class Node<T> {
-    public T data;
-    public Node<T> next;
-
-    public Node(T d, Node<T> n){
-        this.data = d;
-        this.next = n;
-    }
-}
-
 public class LinkedListStack<T> implements Stack<T> {
 
     private int size = 0;
