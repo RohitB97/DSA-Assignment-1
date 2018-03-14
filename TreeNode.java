@@ -7,11 +7,16 @@ public class TreeNode<Key extends Comparable<Key>, Value> {
 	public TreeNode<Key,Value> left_node;
 	public TreeNode<Key,Value> right_node;
 
+	// Rank is defined as the size of the left sub tree of the node
+	// This attribute is introduced to attain O(h) in finding median
+	public int rank;
+
 	public TreeNode(Key k, Value v){
 		this.key = k;
 		this.value = v;
 		this.left_node = null;
 		this.right_node = null;
+		this.rank = 0;
 	}
 
 	private boolean isInRange(Key low, Key high){

@@ -3,41 +3,41 @@ import java.util.*;
 
 class Hash_Map{
 
-		private ArrayList<ArrayList<String>> hash_table = new ArrayList<ArrayList<String>>(1000);
+	private ArrayList<ArrayList<String>> hash_table = new ArrayList<ArrayList<String>>(1000);
 
-		private Set<Integer> keySet = new HashSet<Integer>();
+	private Set<Integer> keySet = new HashSet<Integer>();
 
-		public Hash_Map(){
-			for(int i=0;i<1000;i++){
-				ArrayList<String> temp_list = new ArrayList<String>();
-				this.hash_table.add(temp_list);
-			}
-		} 
-
-		public void put(int key,String value){
-			int index = key % 1000;
-			this.hash_table.get(index).add(value);
-			this.keySet.add(key);
+	public Hash_Map(){
+		for(int i=0;i<1000;i++){
+			ArrayList<String> temp_list = new ArrayList<String>();
+			this.hash_table.add(temp_list);
 		}
+	} 
 
-		public String get(int key){
-			int index = key % 1000;
-			String temp_var = this.hash_table.get(index).remove(0);
-			this.hash_table.get(index).add(temp_var);
-			return temp_var;
-		}
+	public void put(int key,String value){
+		int index = key % 1000;
+		this.hash_table.get(index).add(value);
+		this.keySet.add(key);
+	}
 
-		public boolean containsKey(int key){
-			int index = key % 1000;
-			if(this.hash_table.get(index).size() != 0)
-				return true;
-			else
-				return false;
-		}
+	public String get(int key){
+		int index = key % 1000;
+		String temp_var = this.hash_table.get(index).remove(0);
+		this.hash_table.get(index).add(temp_var);
+		return temp_var;
+	}
 
-		public Set keySet(){
-			return (this.keySet);
-		}
+	public boolean containsKey(int key){
+		int index = key % 1000;
+		if(this.hash_table.get(index).size() != 0)
+			return true;
+		else
+			return false;
+	}
+
+	public Set keySet(){
+		return (this.keySet);
+	}
 }
 
 public class Infotainment{
