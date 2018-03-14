@@ -18,9 +18,8 @@ public class BSTree<Key extends Comparable<Key>, Value> {
 			return node;
 		}
 
-		if(newKey.compareTo(node.key) > 0){
+		if(newKey.compareTo(node.key) > 0)
 			node.right_node = recursive_insert(newKey, newValue, node.right_node);
-		}
 
 		else if(newKey.compareTo(node.key) < 0){
 			node.left_node = recursive_insert(newKey, newValue, node.left_node);
@@ -90,7 +89,7 @@ public class BSTree<Key extends Comparable<Key>, Value> {
 	
 	// getMedianNode method and its corresponding private recursive function
 	// Returns the median node of the BST
-	// Rank attribute is introduced to obtain O(h)
+	// Rank attribute is introduced to obtain O(h) running time
 	private TreeNode<Key,Value> recursive_getMedianNode(TreeNode<Key,Value> node, int median){
 		
 		if(median == (node.rank + 1))
@@ -176,8 +175,10 @@ public class BSTree<Key extends Comparable<Key>, Value> {
 		if(searchKey.compareTo(node.key) > 0)
 			node.right_node = recursive_delete(searchKey, node.right_node);
 
-		else if(searchKey.compareTo(node.key) < 0)
+		else if(searchKey.compareTo(node.key) < 0){
 			node.left_node = recursive_delete(searchKey, node.left_node);
+			node.rank--;
+		}
 
 		else{
 

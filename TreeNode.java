@@ -21,9 +21,6 @@ public class TreeNode<Key extends Comparable<Key>, Value> {
 
 	private boolean isInRange(Key low, Key high){
 
-		if(low == null && high == null)
-			return true;
-
 		if(low == null && this.key.compareTo(high) >= 0)
 			return false;
 
